@@ -1,0 +1,21 @@
+<h1>{{ action }} Jogador</h1>
+
+<form method="post">
+  {% csrf_token %}
+  <div>
+    <label>Nome do Jogador::</label>
+    <input name="jogador" value="{{ tabela.jogador }}">
+  </div>
+
+  <div>
+    <label>Quantidade de jogos:</label>
+    <input name="jogos" value="{{ tabela.jogos }}">
+  </div>
+
+  <div>
+    <label>Quantidade de gols:</label>
+    <input name="gols" value="{{ tabela.gols }}">
+  </div>
+
+  <input type="submit" value="Registrar">
+</form></h1>

@@ -1,0 +1,26 @@
+<h1>{{ action }} Razões</h1>
+
+<form method="post">
+  {% csrf_token %}
+  <div>
+    <label>Título:</label>
+    <input name="titulo" value="{{ razao.titulo }}">
+  </div>
+
+  <div>
+    <label>Razão:</label>
+    <input name="razao" value="{{ razao.razao }}">
+  </div>
+
+  <div>
+    <label>Importância:</label>
+    <input name="importancia" value="{{ razao.importancia }}">
+  </div>
+
+    <div>
+    <label>Data de Angústia:</label>
+    <input type="date" name="dataDeCadaAngustia" value="{{ razao.dataDeCadaAngustia }}">
+  </div>
+
+  <input type="submit" value="Registrar">
+</form>
