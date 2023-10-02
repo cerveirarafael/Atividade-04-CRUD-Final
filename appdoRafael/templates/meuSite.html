@@ -1,0 +1,141 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel = "stylesheet" type = "text/css" href = "{% static 'CSS/styles.css' %}">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Rafael Góes Curtinhas Cerveira</title>
+  <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #870a28;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #00613c;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+ <header>
+        <h1><strong></strong>Por que o Fluminense quer tanto ganhar essa Libertadores?</strong></h1>
+  
+    </header>
+  {% if request.user.is_authenticated %}
+  <b>Bem-vindo, {{ request.user.username }}</b> <br> 
+  <a class="texto" href="/users/logout">Sair</a>
+{% else %}
+  <a href="/users/login" class="texto login-link">Fazer login</a>
+  <a class="texto register-link" href="/users">Registrar-se</a>
+{% endif %}
+    <main>
+        <p>O Fluminense é um dos clubes mais tradicionais do Brasil e tem uma história rica no futebol. Ganhar a Copa Libertadores é um dos maiores objetivos do clube por várias razões:</p>
+        
+        <ul>
+            <!-- <li><strong><i><u>Glória Internacional:</u></i></strong> A Libertadores é um dos torneios de clubes mais prestigiados do mundo, e vencê-lo traria reconhecimento internacional ao Fluminense.</li>
+
+            <li><strong><i><u>História:</u></i></strong> O clube já conquistou muitos títulos importantes no cenário nacional, mas a Libertadores é uma competição que falta no currículo do Fluminense. Ganhar a taça seria um marco histórico.</li>
+
+           <li><strong><i><u>Paixão da Torcida:</u></i></strong> A torcida tricolor é extremamente apaixonada e dedicada. Ganhar a Libertadores seria um sonho realizado para os torcedores que apoiam o clube incondicionalmente.</li>
+
+            <li><strong><i><u>Sentimento de Justiça:</u></i></strong> Fluminense já chegou à final da libertadores em 2008 no Maracanã, onde foi eliminado nos pênaltis pela LDU, mesmo tendo ganho a partida por 3x1. Quem viu o jogo sabe o roubo que foi aquilo. Muito dizem que se existir um "Deus no futebol", é mais do que justo que o Fluminense ganhe essa edição, visto que mesmo sendo um dos times mais tradicionais no país, não possui um título intercontinental expressante. </li>-->
+          {% for el in razao %}
+          <li><strong><i></i><u>{{el.titulo}}</u></i></strong>
+          {{el.razao}}</li>
+          <a href="/razao/delete/{{ el.id }}">Remover</a>
+          <a href="/razao/update/{{ el.id }}">Atualizar</a>
+          {% endfor %}
+          
+        </ul>
+        <a href="/razao">Adicionar Nova Razao</a>
+
+        <p>Portanto, a busca pelo título da Libertadores é mais do que uma simples competição esportiva para o Fluminense. É uma aspiração que envolve história, prestígio e paixão.</p>
+
+      <h2>As 5 Melhores Edições do Fluminense na Libertadores:</h2>
+        <ol>
+            <!--<li><strong> Edição:</strong> Libertadores 2008</li>
+                <p><strong>Desempenho:</strong> Finalista</p>
+
+            <li><strong> Edição:</strong> Libertadores 2023(atual)</li>
+                <p><strong>Desempenho:</strong> Semifinalista</p>
+
+            <li><strong> Edição:</strong> Libertadores 2013</li>
+                <p><strong>Desempenho:</strong> Semifinalista</p>
+
+            <li><strong> Edição:</strong> Libertadores 2011</li>
+                <p><strong>Desempenho:</strong> Quartas de Final</p>
+
+            <li><strong> Edição:</strong> Libertadores 2020</li>
+                <p><strong>Desempenho:</strong> Oitavas de Final</p>-->
+          {% for el in edicao %}
+          <li><strong>{{el.rankEdicao}}</strong>
+          {{el.anoEdicao}}</li>
+          <p><strong>{{el.desempenho}}</strong>
+          {{el.qualidadeDesempenho}}</p>
+          {% endfor %}
+        </ol>
+    </ol>
+  <div class="blue-center">
+    <img src="{% static 'images/FLU.png' %}" width="300">        </div>
+    <br>
+  <div class="yellow-center">
+    <caption><b>Jogadores com mais gols pelo Fluminense na libertadores:</b></caption></div>
+      
+<div class="green-center">      
+  <table border='1'>
+    <table>
+  <thead>
+    <tr>
+      <th>Jogador</th>
+      <th>Jogos</th>
+      <th>Gols</th>
+      <th>Ação</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for el in tabela %}
+    <tr>
+      <td>{{ el.jogador }}</td>
+      <td>{{ el.jogos }}</td>
+      <td>{{ el.gols }}</td>
+      <td><a href="/tabela/delete/{{ el.id }}">Remover</a></td>
+      <td><a href="/tabela/update/{{ el.id }}">Atualizar</a></td>
+    </tr>
+    {% endfor %}
+    
+    <a href="/tabela">Adicionar novo jogador</a>
+  </tbody>
+</table>
+  </table> </div>
+      
+    </main>
+  
+    
+</body>
+
+</html>
